@@ -32,6 +32,8 @@ class MoviesResource extends Resource
 
     protected static ?string $navigationGroup = 'Content Management';
 
+    protected static ?string $recordTitleAttribute = 'full_name';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -246,10 +248,10 @@ class MoviesResource extends Resource
         ];
     }
 
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
+    // public static function getNavigationBadge(): ?string
+    // {
+    //     return static::getModel()::count();
+    // }
 
     public static function getEloquentQuery(): Builder
     {

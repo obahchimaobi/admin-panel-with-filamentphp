@@ -24,9 +24,9 @@ class PendingSeriesResource extends Resource
 {
     protected static ?string $model = Series::class;
 
-    protected static ?string $navigationIcon = 'far-hourglass';
+    protected static ?string $navigationIcon = 'bi-hourglass';
 
-    protected static ?string $activeNavigationIcon = 'fas-hourglass-end';
+    protected static ?string $activeNavigationIcon = 'bi-hourglass-bottom';
 
     protected static ?string $pluralModelLabel = "Pending series";
 
@@ -36,7 +36,7 @@ class PendingSeriesResource extends Resource
     {
         return $form
             ->schema([
-                
+                // 
             ]);
     }
 

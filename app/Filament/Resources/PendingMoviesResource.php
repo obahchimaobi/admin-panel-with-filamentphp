@@ -24,9 +24,9 @@ class PendingMoviesResource extends Resource
 {
     protected static ?string $model = Movies::class;
 
-    protected static ?string $navigationIcon = 'far-hourglass';
+    protected static ?string $navigationIcon = 'bi-hourglass';
 
-    protected static ?string $activeNavigationIcon = 'fas-hourglass-end';
+    protected static ?string $activeNavigationIcon = 'bi-hourglass-bottom';
 
     protected static ?string $pluralModelLabel = "Pending movies";
 
@@ -68,10 +68,10 @@ class PendingMoviesResource extends Resource
                     ->limit(10),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
-                    ->colors([
+                    ->color(fn(string $state): string => match ($state) {
                         'pending' => 'warning',
-                        'approved' => 'success'
-                    ]),
+                        'approved' => 'success',
+                    }),
 
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
@@ -145,9 +145,6 @@ class PendingMoviesResource extends Resource
                                     ->columnSpanFull()
                             ])
                     ]),
-
-
-
                 Tables\Actions\DeleteAction::make(),
 
                 Action::make('movies')
