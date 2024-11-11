@@ -57,7 +57,7 @@ This repository contains a custom-built admin panel created with [FilamentPHP](h
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/obahchimaobi/admin-panel-with-filamentphp.git
-   cd your-repo-name
+   cd admin-panel-with-filamentphp
    ```
 
 2. **Install Dependencies**
