@@ -5,6 +5,9 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Seasons;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Carbon;
@@ -12,6 +15,7 @@ use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Actions\EditAction;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\SeasonsResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -101,7 +105,66 @@ class SeasonsResource extends Resource
             ])
             ->actions([
                 // Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                EditAction::make()
+                    ->form([
+                        Section::make()
+                            ->columns([
+                                'sm' => 3,
+                                'xl' => 6,
+                                '2xl' => 8,
+                            ])
+                            ->schema([
+                                TextInput::make('full_name')
+                                    ->disabled()
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+
+                                TextInput::make('season_number')
+                                    ->disabled()
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+
+                                TextInput::make('episode_number')
+                                    ->disabled()
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+
+                                TextInput::make('episode_name')
+                                    ->disabled()
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+
+                                TextInput::make('status')
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+
+                                TextInput::make('download_url')
+                                    ->columnSpan([
+                                        'sm' => 2,
+                                        'xl' => 3,
+                                        '2xl' => 4,
+                                    ]),
+
+                                Textarea::make('overview')
+                                    ->columnSpanFull()
+
+                            ])
+                    ]),
                 Tables\Actions\ForceDeleteAction::make(),
                 Tables\Actions\RestoreAction::make(),
 
@@ -151,6 +214,7 @@ class SeasonsResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
+            
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);

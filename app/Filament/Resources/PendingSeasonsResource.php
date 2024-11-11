@@ -6,6 +6,7 @@ use App\Filament\Resources\PendingSeasonsResource\Pages;
 use App\Filament\Resources\PendingSeasonsResource\RelationManagers;
 use App\Models\Movies;
 use App\Models\Seasons;
+use App\Models\Series;
 use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Tables\Actions\BulkAction;
@@ -15,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -123,7 +125,6 @@ class PendingSeasonsResource extends Resource
                                     ]),
 
                                 TextInput::make('status')
-                                    ->disabled()
                                     ->columnSpan([
                                         'sm' => 2,
                                         'xl' => 3,
@@ -131,7 +132,6 @@ class PendingSeasonsResource extends Resource
                                     ]),
 
                                 TextInput::make('download_url')
-                                    ->disabled()
                                     ->columnSpan([
                                         'sm' => 2,
                                         'xl' => 3,
@@ -146,6 +146,45 @@ class PendingSeasonsResource extends Resource
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\ForceDeleteAction::make(),
                 Tables\Actions\RestoreAction::make(),
+
+                Action::make('seasons')
+                    ->label('Approve')
+                    ->color('success')
+                    ->icon('heroicon-m-check-circle')
+                    ->action(function ($record) {
+                        // Fetch the Series using the series_id field
+                        $series = Series::where('movieId', $record->movieId)->first(); // Assuming series_id is the foreign key
+                        // dd($series);
+            
+                        if ($series && $series->status == 'pending') {
+                            // Approve the Series if not already approved
+                            $series->update([
+                                'status' => 'approved',
+                                'approved_at' => Carbon::now(),
+                            ]);
+
+                            // Notify that the Series has been approved
+                            Notification::make()
+                                ->title('Series Approved')
+                                ->success()
+                                ->send();
+                        }
+
+                        // Approve the Season
+                        $record->update([
+                            'status' => 'approved',
+                            'approved_at' => Carbon::now(),
+                        ]);
+
+                        // Notify about the Season approval
+                        Notification::make()
+                            ->title('Season Approved')
+                            ->success()
+                            ->send();
+                    })
+                    ->visible(fn($record) => $record->status === 'pending'),
+
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -223,14 +223,14 @@ class MoviesResource extends Resource
                             ->send();
                     })
                     ->visible(fn ($record) => $record->status === 'pending'),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ForceDeleteBulkAction::make(),
-                    Tables\Actions\RestoreBulkAction::make(),
-                ]),
-            ]);
+                ]);
+            // ->bulkActions([
+            //     Tables\Actions\BulkActionGroup::make([
+            //         Tables\Actions\DeleteBulkAction::make(),
+            //         Tables\Actions\ForceDeleteBulkAction::make(),
+            //         Tables\Actions\RestoreBulkAction::make(),
+            //     ]),
+            // ]);
     }
 
     public static function getRelations(): array
