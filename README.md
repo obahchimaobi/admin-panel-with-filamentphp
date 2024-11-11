@@ -32,6 +32,10 @@
 
 # FilamentPHP Admin Panel
 
+<img src="public/images/Screenshot From 2024-11-11 12-48-09.png">
+<img src="public/images/Screenshot From 2024-11-11 13-17-15.png">
+<img src="public/images/Screenshot From 2024-11-11 13-17-08.png">
+
 This repository contains a custom-built admin panel created with [FilamentPHP](https://filamentphp.com/), offering a seamless and efficient experience for managing application data. The panel is enriched with powerful features like global search and integrated Google Analytics, making it a comprehensive tool for monitoring and managing key aspects of your application.
 
 ## Key Features
