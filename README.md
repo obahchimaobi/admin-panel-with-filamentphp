@@ -32,6 +32,10 @@
 
 # FilamentPHP Admin Panel
 
+<img src="public/images/Screenshot From 2024-11-11 12-48-09.png">
+<img src="public/images/Screenshot From 2024-11-11 13-17-15.png">
+<img src="public/images/Screenshot From 2024-11-11 13-17-08.png">
+
 This project is a powerful and user-friendly admin panel built with [FilamentPHP](https://filamentphp.com/), designed to manage data and workflows efficiently. It includes features like global search and integrated Google Analytics to track user interactions and site performance.
 
 ### Key Features
