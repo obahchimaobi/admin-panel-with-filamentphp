@@ -248,10 +248,10 @@ class MoviesResource extends Resource
         ];
     }
 
-    // public static function getNavigationBadge(): ?string
-    // {
-    //     return static::getModel()::count();
-    // }
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 
     public static function getEloquentQuery(): Builder
     {
@@ -260,47 +260,4 @@ class MoviesResource extends Resource
                 SoftDeletingScope::class,
             ]);
     }
-
-    // public static function infolist(Infolist $infolist): Infolist
-    // {
-    //     return $infolist
-    //         ->schema([
-    //             // ...
-    //             TextEntry::make('full_name')
-    //                 ->copyable(),
-
-    //             TextEntry::make(name: 'country')
-    //                 ->copyable(),
-
-    //             TextEntry::make('plotText')
-    //                 ->copyable(),
-
-    //             TextEntry::make('releaseYear')
-    //                 ->copyable(),
-
-    //             TextEntry::make(name: 'releaseDate')
-    //                 ->copyable(),
-
-    //             TextEntry::make('aggregateRating')
-    //                 ->copyable(),
-
-    //             TextEntry::make('runtime')
-    //                 ->copyable(),
-
-    //             TextEntry::make(name: 'status')
-    //                 ->copyable(),
-
-    //             TextEntry::make('downloads')
-    //                 ->copyable(),
-
-    //             TextEntry::make('approved_at')
-    //                 ->since()
-    //                 ->copyable(),
-    //         ]);
-    // }
-
-    // public static function getGloballySearchableAttributes(): array
-    // {
-    //     return ['full_name', 'country', 'releaseYear'];
-    // }
 }

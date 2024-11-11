@@ -6,10 +6,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bezhansalleh/filament-google-analytics": "^2.1",
+        "charrafimed/global-search-modal": "^3.4",
         "davidhsianturi/blade-bootstrap-icons": "^1.5",
         "filament/filament": "^3.2",
         "filament/notifications": "^3.2",
         "filament/widgets": "^3.2",
+        "joaopaulolndev/filament-edit-profile": "^1.0",
         "laravel/framework": "^11.9",
         "laravel/scout": "^10.11",
         "laravel/tinker": "^2.9",

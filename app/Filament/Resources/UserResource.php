@@ -34,8 +34,6 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('email_verified_at')
-                    ->required(),
                 Forms\Components\TextInput::make('password')
                     ->password()
                     ->required()
@@ -98,8 +96,8 @@ class UserResource extends Resource
     {
         return [
             'index' => Pages\ListUsers::route('/'),
-            'create' => Pages\CreateUser::route('/create'),
-            'edit' => Pages\EditUser::route('/{record}/edit'),
+            // 'create' => Pages\CreateUser::route('/create'),
+            // 'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 

@@ -163,4 +163,9 @@ class SeasonsResource extends Resource
             'Episode' => $record->episode_number,
         ];
     }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 }

@@ -6,7 +6,9 @@ use App\Filament\Resources\PendingSeasonsResource\Pages;
 use App\Filament\Resources\PendingSeasonsResource\RelationManagers;
 use App\Models\Movies;
 use App\Models\Seasons;
+use Carbon\Carbon;
 use Filament\Forms;
+use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -17,6 +19,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\Section;
+use Filament\Notifications\Notification;
 
 class PendingSeasonsResource extends Resource
 {
@@ -149,6 +152,24 @@ class PendingSeasonsResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                     Tables\Actions\ForceDeleteBulkAction::make(),
                     Tables\Actions\RestoreBulkAction::make(),
+
+                    BulkAction::make('movies')
+                        ->label('Approve Selected')
+                        ->color('success')
+                        ->icon('heroicon-m-check-circle')
+                        ->action(function ($records) { // Use $records as a collection
+                            foreach ($records as $record) {
+                                $record->update([
+                                    'status' => 'approved',
+                                    'approved_at' => Carbon::now(),
+                                ]);
+                            }
+
+                            Notification::make()
+                                ->title('Approval Successful')
+                                ->success()
+                                ->send();
+                        })
                 ]),
             ]);
     }

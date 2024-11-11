@@ -2,14 +2,31 @@
 
 namespace App\Models;
 
+use Filament\Panel;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Models\Contracts\HasAvatar;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Seasons extends Model
+class Seasons extends Model implements  FilamentUser, HasAvatar
 {
     use HasFactory, Searchable, SoftDeletes;
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        if ($panel->getId() === 'admin') {
+            return str_ends_with($this->email, '@gmail.com') && $this->hasVerifiedEmail();
+        }
+ 
+        return true;
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        // return asset('images/');
+    }
 
     /**
      * The attributes that are mass assignable.
