@@ -32,26 +32,73 @@
 
 # FilamentPHP Admin Panel
 
-<img src="public/images/Screenshot From 2024-11-11 12-48-09.png">
-<img src="public/images/Screenshot From 2024-11-11 13-17-15.png">
-<img src="public/images/Screenshot From 2024-11-11 13-17-08.png">
+This repository contains a custom-built admin panel created with [FilamentPHP](https://filamentphp.com/), offering a seamless and efficient experience for managing application data. The panel is enriched with powerful features like global search and integrated Google Analytics, making it a comprehensive tool for monitoring and managing key aspects of your application.
 
-This project is a powerful and user-friendly admin panel built with [FilamentPHP](https://filamentphp.com/), designed to manage data and workflows efficiently. It includes features like global search and integrated Google Analytics to track user interactions and site performance.
+## Key Features
 
-### Key Features
-- **Global Search**: Easily find records across multiple tables with a fast and intuitive search, thanks to [charrafimed](https://github.com/charrafimed).
-- **Google Analytics Integration**: Monitor real-time traffic and user engagement right from the dashboard, made possible by [BezhanSalleh](https://github.com/BezhanSalleh).
+- **Global Search**: Quickly search across multiple resources and find records in real-time. This feature, contributed by [charrafimed](https://github.com/charrafimed), allows administrators to access data faster, improving workflow efficiency.
+- **Google Analytics Integration**: Track real-time user interactions and site performance right from the admin dashboard, with easy integration provided by [BezhanSalleh](https://github.com/BezhanSalleh).
+- **User-Friendly Interface**: Built with a clean, responsive design that makes navigating and managing content intuitive.
+- **Role-Based Access Control**: Manage user roles and permissions to ensure secure access to sensitive data.
 
-### Tech Stack
-- **Laravel**: Backend framework for robust application logic.
-- **FilamentPHP**: Elegant and customizable admin panel solution for Laravel.
-- **MySQL/PostgreSQL**: Database for data storage and management.
+## Tech Stack
 
-### Getting Started
-1. Clone the repo: `git clone https://github.com/obahchimaobi/admin-panel-with-filamentphp.git`
-2. Install dependencies: `composer install`
-3. Run migrations: `php artisan migrate`
+- **Backend**: Laravel
+- **Admin Panel Framework**: FilamentPHP
+- **Database**: MySQL
+- **Front-End**: Tailwind CSS (via Filament)
+  
+## Installation
 
-### License
-This project is licensed under the MIT License.
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/obahchimaobi/admin-panel-with-filamentphp.git
+   cd your-repo-name
+   ```
 
+2. **Install Dependencies**
+   ```bash
+   composer install
+   npm install && npm run dev
+   ```
+
+3. **Set Up Environment**
+   - Copy the `.env.example` file to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Update `.env` with your database credentials and other required environment settings.
+
+4. **Run Migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+5. **Serve the Application**
+   ```bash
+   php artisan serve
+   ```
+
+6. **Set Up Filament Admin**
+   - Create an admin user:
+     ```bash
+     php artisan make:filament-user
+     ```
+
+## Usage
+
+### Global Search
+Easily accessible from the top navigation, global search allows you to search across all major resources in the system. Type in any keyword, and relevant records will appear instantly, saving time and enhancing productivity.
+
+### Google Analytics Dashboard
+The Google Analytics dashboard offers insights into your website’s performance, directly from the admin panel. You'll be able to track key metrics, including user sessions, page views, and real-time visitor activity.
+
+## Contributing
+
+If you'd like to contribute to this project, feel free to open a pull request. Whether it's fixing bugs, improving documentation, or adding new features, contributions are always welcome!
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
