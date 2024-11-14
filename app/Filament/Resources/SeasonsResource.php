@@ -173,13 +173,33 @@ class SeasonsResource extends Resource
                     ->color('success')
                     ->icon('heroicon-m-check-circle')
                     ->action(function ($record) {
+                        // Fetch the Series using the series_id field
+                        $series = \App\Models\Series::where('movieId', $record->movieId)->first(); // Assuming series_id is the foreign key
+                        // dd($series);
+            
+                        if ($series && $series->status == 'pending') {
+                            // Approve the Series if not already approved
+                            $series->update([
+                                'status' => 'approved',
+                                'approved_at' => Carbon::now(),
+                            ]);
+
+                            // Notify that the Series has been approved
+                            Notification::make()
+                                ->title('Series Approved')
+                                ->success()
+                                ->send();
+                        }
+
+                        // Approve the Season
                         $record->update([
                             'status' => 'approved',
                             'approved_at' => Carbon::now(),
                         ]);
 
+                        // Notify about the Season approval
                         Notification::make()
-                            ->title('Approval Successful')
+                            ->title('Season Approved')
                             ->success()
                             ->send();
                     })
@@ -214,7 +234,7 @@ class SeasonsResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            
+
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
